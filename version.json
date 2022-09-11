@@ -1,6 +1,7 @@
 {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/mappet",
     "1.12.2": {
+        "0.3.1": "Dashboard whitelist and other things.",
         "0.3": "ES12 support. Allow JS-functions in mappet.createUI(), IScriptEntity.onGround and other things.",
         "0.2.2": "This quick patch update patches and updates.",
         "0.2.1": "This quick patch update adds `IScriptEntity.getMorph()` and fixes a couple of documenation errors.",
@@ -14,7 +15,7 @@
         "0.1-alpha": "This first release provides tons of features: states, conditions, expressions, emitter block, trigger block, region block, crafting tables, quests, NPCs, factions, events, scripts, dialogues, quest chains, many commands, custom sound events, target selectors, global triggers, and much more."
     },
     "promos": {
-        "1.12.2-latest": "0.3",
+        "1.12.2-latest": "0.3.1",
         "1.12.2-recommended": "0.2.2"
     }
 }

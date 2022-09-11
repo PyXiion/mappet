@@ -1,4 +1,3 @@
-#PARSE_ESCAPES
 
 # Error
 mappet.error.states.invalid_target=§fГлобальные состояние или состояние игрока §7%s§f отсутствует!
@@ -56,6 +55,8 @@ mappet.success.quest.declined=§fКвест с ID §7%s§f был удалён �
 mappet.success.data.saved=§fДанные с ID §7%s§f были сохранены.
 mappet.success.data.loaded=§fДанные с ID §7%s§f были загружены.
 
+mappet.success.events.stopped=§fStopped §7%s§f events by %s§f ID!
+
 # Commands
 mappet.commands.mp.help=Главная команда Маппета, предоставляющая подкоманды для работы с возможностями Маппета.
 
@@ -78,6 +79,7 @@ mappet.commands.mp.crafting.drop=Эта команда выбрасывает п
 
 mappet.commands.mp.event.help=Подкоманда событий Маппета.
 mappet.commands.mp.event.trigger=Эта команда включает событие с ID §7<id>§r используя игрока/ов §7<player>§r в качестве контекста. Вы также можете передать произвольные NBT-данные событию используя аргумент данных §7[data]§r.
+mappet.commands.mp.event.stop=This command stops a delayed event(s) (or script(s)) by given §7<id>§r.
 
 mappet.commands.mp.dialogue.help=Подкоманда диалогов Маппета.
 mappet.commands.mp.dialogue.open=Эта команда открывает диалог с ID §7<id>§r для игрока/ов §7<player>§r.
@@ -99,6 +101,12 @@ mappet.commands.mp.data.load=Загружает сохранённые данн�
 mappet.commands.mp.data.save=Сохраняет глобальные состояния вместе с текущими состояниями игрока, а также его инвентарём в данные с ID §7<id>§r.
 mappet.commands.mp.data.rencode=Re-encode all data files within world's §7mappet/§f folder from §7<from>§r character set, to §7<to>§r character set.
 
+mappet.commands.mp.whitelist.help=Белый список
+mappet.commands.mp.whitelist.load=Загрузить белый список
+mappet.commands.mp.whitelist.save=Сохранить белый список
+mappet.commands.mp.whitelist.saved=Белый список сохранён
+mappet.commands.mp.whitelist.loaded=Белый список загружен
+
 mappet.commands.mp.script.help=Подкоманда скриптов.
 mappet.commands.mp.script.eval=Эта команда рассчитывает скрипт с ID §7<id>§r (из папки §7mappet/scripts/§r, без приписки формата файла) для игроков найденных селектором цели §7<player>§r. Будет вызвана функция скрипта §7[function]§r (если она отсутствует, то будет вызвана §7main§r). Вы также можете передавать опциональные NBT-данные напрямую в событие используя аргумент §7[data]§r.
 mappet.commands.mp.script.exec=This command executes script by §7<id>§r (from world's §7mappet/scripts/§r folder, without file extension) upon player(s) or server (if §7~§r was provided) found by §7<target>§r selector. Script's §7[function]§r (§7main§r if omitted) function will be called. You can also pass arbitrary NBT data to the event using §7[data]§r argument.
@@ -113,7 +121,6 @@ mappet.commands.mp.morph.add.help=Subcommand to display morph(s) in the world.
 mappet.commands.mp.morph.add.entity=Displays a §7<morph>§r in the world for §7<expiration>§r ticks attached to all entities found by §7<target>§r selector. §7<x>§r, §7<y>§r and §7<z>§r is a relative shift from the bottom center of entity's hit box. §7<rotate>§r is a boolean (§7true§r or §7false§r) that toggles whether world morph should follow entity's rotation. §7<yaw>§r and §7<pitch>§r are horizontal and vertical rotation offsets, respectively.
 mappet.commands.mp.morph.add.world=Displays a §7<morph>§r in the world for §7<expiration>§r ticks.§7<x>§r, §7<y>§r and §7<z>§r are absolute world coordinates where the morph will be displayed. §7<yaw>§r and §7<pitch>§r are horizontal and vertical rotation offsets, respectively. Relative §7~§r values are supported for §7<x>§r, §7<y>§r, §7<z>§r, §7<yaw>§r, and §7<pitch>§r arguments.
 
-# Config
 
 mappet.config.title=Маппет
 
@@ -136,7 +143,6 @@ mappet.config.npc.tool_only_creative=Инструмент НПС только д
 mappet.config.comments.npc.tool_only_creative=Этот параметр определяет, могут ли только игроки в креативе использовать инструмент NPC.
 mappet.config.npc.dashboard_only_creative=Главная панель только для Креатива
 mappet.config.comments.npc.dashboard_only_creative=Этот параметр определяет, могут ли только игроки в креативе открывать главную панель.
-
 
 mappet.config.events.title=События
 mappet.config.events.tooltip=Настройки мода, относящиеся к событиям
@@ -171,7 +177,6 @@ mappet.config.comments.script_editor.sounds=Необходимо ли проиг
 mappet.config.script_editor.ui_debug=UI debug
 mappet.config.comments.script_editor.ui_debug=When enabled, adds a couple of debug utilities UI generated by scripting API, such as copying the camera position of the morph component.
 
-# GUI
 
 mappet.gui.none=<none>
 mappet.gui.search=Искать...
@@ -296,6 +301,10 @@ mappet.gui.settings.triggers.player_item_interact=Player: interact an item
 mappet.gui.settings.triggers.descriptions.player_item_interact=This cancelable trigger gets triggered when a player right clicks in the air with item.
 mappet.gui.settings.triggers.variables.player_item_interact=§7N/A§r
 
+mappet.gui.settings.triggers.player_entity_interact=При взаимодействии игрока с сущностью
+mappet.gui.settings.triggers.descriptions.player_entity_interact=This cancelable trigger gets triggered when a player interact with entity.
+mappet.gui.settings.triggers.variables.player_entity_interact=§6entity§r, §7IScriptEntity§r entity that player interacted.
+
 mappet.gui.settings.triggers.player_close_container=Player: closed container
 mappet.gui.settings.triggers.descriptions.player_close_container=This gets triggered when a player picks up an item in the world.
 mappet.gui.settings.triggers.variables.player_close_container=§6item§r, §7IScriptItemStack§r item that player picked (this is useful only in scripts).
@@ -304,9 +313,6 @@ mappet.gui.settings.triggers.player_journal=Player: opened journal
 mappet.gui.settings.triggers.descriptions.player_journal=This cancelable trigger gets triggered when a player opens the player journal.\n\nYou can use this trigger to implement your own player journal using UI API. When event gets canceled, the default player journal won't be opened.
 mappet.gui.settings.triggers.variables.player_journal=§7N/A§r
 
-mappet.gui.settings.triggers.player_entity_interact=При взаимодействии игрока с сущностью
-mappet.gui.settings.triggers.descriptions.player_entity_interact=This cancelable trigger gets triggered when a player interact with entity.
-mappet.gui.settings.triggers.variables.player_entity_interact=§6entity§r, §7IScriptEntity§r entity that player interacted.
 
 mappet.gui.quests.cancelable=Отменяемый
 mappet.gui.quests.instant=Мгновенный
@@ -318,7 +324,7 @@ mappet.gui.quests.decline=Отклонить квестовый триггер
 mappet.gui.quests.complete=Завершить квестовый триггер
 mappet.gui.quests.objectives.title=Цели
 mappet.gui.quests.objectives.message=Сообщение пользовательской цели
-mappet.gui.quests.objectives.message_tooltip=Это поле позволяет вам ввести сообщение пользовательской цели вместо целей по умолчанию. 
+mappet.gui.quests.objectives.message_tooltip=Это поле позволяет вам ввести сообщение пользовательской цели вместо целей по умолчанию.
 mappet.gui.quests.objective_kill.entity=Сущность
 mappet.gui.quests.objective_kill.count=Счёт
 mappet.gui.quests.objective_kill.nbt=Соответствующий NBT
@@ -326,7 +332,7 @@ mappet.gui.quests.objective_kill.string=Убить %s (%s/%s)
 mappet.gui.quests.objective_kill.message_tooltip=Доступны следующие переменные:\n\n§6${entity}§r - отображаемое название сущности\n§6${count}§r - сколько необходимых сущностей уже было убито\n§6${total}§r - сколько всего сущностей необходимо убить
 mappet.gui.quests.objective_collect.title=Количество предметов на сбор
 mappet.gui.quests.objective_collect.ignore_nbt=Ignore NBT
-mappet.gui.quests.objective_collect.ignore_nbt_tooltip=When enabled, the additional NBT or meta/damage data will be ignored when comparing the items that player has in their inventory 
+mappet.gui.quests.objective_collect.ignore_nbt_tooltip=When enabled, the additional NBT or meta/damage data will be ignored when comparing the items that player has in their inventory
 mappet.gui.quests.objective_collect.string=Собрать %s (%s/%s)
 mappet.gui.quests.objective_collect.message_tooltip=Доступны следующие переменные:\n\n§6${name}§r - отображаемое название предмета(ов)\n§6${count}§r - сколько предметов уже было собрано\n§6${total}§r - сколько всего предметов необходимо собрать
 mappet.gui.quests.objective_state.dialogue=Поговорите с ...
@@ -341,7 +347,6 @@ mappet.gui.quests.rewards.context.remove=Удалить эту награду
 mappet.gui.quests.rewards.context.add_item=Добавить награду в предметах
 mappet.gui.quests.reward_item.title=Предметы награды
 mappet.gui.quests.info.empty=Чтобы начать редактирование, создайте или выберите квест из списка справа...
-mappet.gui.quests.visible=Видимый
 
 mappet.gui.interaction.back=Назад
 mappet.gui.interaction.accept=Принять
@@ -605,7 +610,7 @@ mappet.gui.syntax_theme.colors.identifier=Для названий функций
 mappet.gui.syntax_theme.colors.special=Для ключевого слова "this"
 mappet.gui.syntax_theme.colors.strings=Для одиночных строк, взятых в " и '
 mappet.gui.syntax_theme.colors.comments=Для комментария в одной и нескольких строках
-mappet.gui.syntax_theme.colors.numbers=Для постоянных значений, таких как числа, null и undefined 
+mappet.gui.syntax_theme.colors.numbers=Для постоянных значений, таких как числа, null и undefined
 mappet.gui.syntax_theme.colors.other=Простой текст
 mappet.gui.syntax_theme.background_colors.title=Фоновые цвета
 mappet.gui.syntax_theme.background_colors.line_numbers=Цвет номеров строк
@@ -663,7 +668,6 @@ mappet.gui.huds.context.copy=Copy this HUD morph
 mappet.gui.huds.context.paste=Paste copied HUD morph
 mappet.gui.huds.context.remove=Remove this HUD morph
 
-# GUI enums
 
 mappet.gui.shapes.box=Куб
 mappet.gui.shapes.sphere=Сфера
@@ -754,4 +758,5 @@ mappet.translation.community=Дискорд
 mappet.translation.community_url=https://discord.gg/QhvbgSWpYn
 mappet.translation.sounds=Открыть папку со звуками
 
-mappet.javet_error=Javet не установлен в папке mods. Скачать Javet: https://goo.su/cQJE1
+mappet.gui.quests.visible=Видимый
+mappet.javet_error=Javet is not in mods folder. Scripts disabled. You can download it: \nLinux https://goo.su/sUSe\nWindows: https://goo.su/Ns4cI

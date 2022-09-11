@@ -7,6 +7,7 @@ import mchorse.mappet.api.events.EventManager;
 import mchorse.mappet.api.expressions.ExpressionManager;
 import mchorse.mappet.api.factions.FactionManager;
 import mchorse.mappet.api.huds.HUDManager;
+import mchorse.mappet.api.misc.DashboardWhitelist;
 import mchorse.mappet.api.misc.ServerSettings;
 import mchorse.mappet.api.npcs.NpcManager;
 import mchorse.mappet.api.quests.QuestManager;
@@ -86,6 +87,7 @@ public final class Mappet
 
     /* Server side data */
     public static ServerSettings settings;
+    public static DashboardWhitelist dashboardWhitelist;
     public static States states;
     public static QuestManager quests;
     public static CraftingManager crafting;
@@ -199,6 +201,8 @@ public final class Mappet
 
         settings = new ServerSettings(new File(mappetWorldFolder, "settings.json"));
         settings.load();
+        dashboardWhitelist = new DashboardWhitelist(new File(mappetWorldFolder, "whitelist.json"));
+        dashboardWhitelist.load();
         states = new States(new File(mappetWorldFolder, "states.json"));
         states.load();
 

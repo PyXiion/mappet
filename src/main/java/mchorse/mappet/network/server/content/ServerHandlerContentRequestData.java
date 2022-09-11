@@ -1,5 +1,6 @@
 package mchorse.mappet.network.server.content;
 
+import mchorse.mappet.Mappet;
 import mchorse.mappet.api.utils.ContentType;
 import mchorse.mappet.capabilities.character.Character;
 import mchorse.mappet.capabilities.character.ICharacter;
@@ -35,7 +36,7 @@ public class ServerHandlerContentRequestData extends ServerMessageHandler<Packet
     @Override
     public void run(EntityPlayerMP player, PacketContentRequestData message)
     {
-        if (!OpHelper.isPlayerOp(player))
+        if (!Mappet.dashboardWhitelist.isWhitelisted(player))
         {
             return;
         }

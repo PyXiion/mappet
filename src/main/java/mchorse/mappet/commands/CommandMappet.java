@@ -12,6 +12,7 @@ import mchorse.mappet.commands.npc.CommandNpc;
 import mchorse.mappet.commands.quests.CommandQuest;
 import mchorse.mappet.commands.scripts.CommandScript;
 import mchorse.mappet.commands.states.CommandState;
+import mchorse.mappet.commands.whitelist.CommandWhitelist;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -59,6 +60,7 @@ public class CommandMappet extends MappetSubCommandBase
         this.add(new CommandQuest());
         this.add(new CommandScript());
         this.add(new CommandState());
+        this.add(new CommandWhitelist());
     }
 
     @Override

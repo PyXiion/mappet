@@ -33,7 +33,7 @@ public class ServerHandlerStates extends ServerMessageHandler<PacketStates>
     @Override
     public void run(EntityPlayerMP player, PacketStates message)
     {
-        if (!OpHelper.isPlayerOp(player))
+        if (!Mappet.dashboardWhitelist.isWhitelisted(player))
         {
             return;
         }

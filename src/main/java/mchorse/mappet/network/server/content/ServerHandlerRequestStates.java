@@ -1,5 +1,6 @@
 package mchorse.mappet.network.server.content;
 
+import mchorse.mappet.Mappet;
 import mchorse.mappet.api.states.States;
 import mchorse.mappet.network.Dispatcher;
 import mchorse.mappet.network.common.content.PacketRequestStates;
@@ -13,7 +14,7 @@ public class ServerHandlerRequestStates extends ServerMessageHandler<PacketReque
     @Override
     public void run(EntityPlayerMP player, PacketRequestStates message)
     {
-        if (!OpHelper.isPlayerOp(player))
+        if (!Mappet.dashboardWhitelist.isWhitelisted(player))
         {
             return;
         }

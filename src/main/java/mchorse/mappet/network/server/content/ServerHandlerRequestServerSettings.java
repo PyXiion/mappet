@@ -13,7 +13,7 @@ public class ServerHandlerRequestServerSettings extends ServerMessageHandler<Pac
     @Override
     public void run(EntityPlayerMP player, PacketRequestServerSettings message)
     {
-        if (!OpHelper.isPlayerOp(player))
+        if (!Mappet.dashboardWhitelist.isWhitelisted(player))
         {
             return;
         }

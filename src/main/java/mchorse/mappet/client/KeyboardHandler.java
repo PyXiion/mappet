@@ -3,14 +3,13 @@ package mchorse.mappet.client;
 import mchorse.mappet.Mappet;
 import mchorse.mappet.api.misc.hotkeys.TriggerHotkey;
 import mchorse.mappet.client.gui.GuiJournalScreen;
-import mchorse.mappet.client.gui.GuiMappetDashboard;
 import mchorse.mappet.network.Dispatcher;
 import mchorse.mappet.network.common.events.PacketEventHotkey;
 import mchorse.mappet.network.common.events.PacketPlayerJournal;
+import mchorse.mappet.network.common.ui.PacketDashboard;
 import mchorse.mclib.client.gui.framework.tooltips.styles.TooltipStyle;
 import mchorse.mclib.client.gui.utils.Area;
 import mchorse.mclib.client.gui.utils.keys.IKey;
-import mchorse.mclib.utils.OpHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
@@ -103,18 +102,18 @@ public class KeyboardHandler
     {
         Minecraft mc = Minecraft.getMinecraft();
 
-        if (this.openMappetDashboard.isPressed() && OpHelper.isPlayerOp())
+        if (this.openMappetDashboard.isPressed())
         {
             if (Mappet.dashboardOnlyCreative.get())
             {
                 if (mc.player.capabilities.isCreativeMode)
                 {
-                    mc.displayGuiScreen(GuiMappetDashboard.get(mc));
+                    Dispatcher.sendToServer(new PacketDashboard());
                 }
             }
             else
             {
-                mc.displayGuiScreen(GuiMappetDashboard.get(mc));
+                Dispatcher.sendToServer(new PacketDashboard());
             }
         }
 

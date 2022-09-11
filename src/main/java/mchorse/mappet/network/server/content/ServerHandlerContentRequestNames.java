@@ -1,5 +1,6 @@
 package mchorse.mappet.network.server.content;
 
+import mchorse.mappet.Mappet;
 import mchorse.mappet.network.Dispatcher;
 import mchorse.mappet.network.common.content.PacketContentNames;
 import mchorse.mappet.network.common.content.PacketContentRequestNames;
@@ -15,7 +16,7 @@ public class ServerHandlerContentRequestNames extends ServerMessageHandler<Packe
     @Override
     public void run(EntityPlayerMP player, PacketContentRequestNames message)
     {
-        if (!OpHelper.isPlayerOp(player))
+        if (!Mappet.dashboardWhitelist.isWhitelisted(player))
         {
             return;
         }

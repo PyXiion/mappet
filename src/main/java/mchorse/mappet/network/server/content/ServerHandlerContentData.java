@@ -1,5 +1,6 @@
 package mchorse.mappet.network.server.content;
 
+import mchorse.mappet.Mappet;
 import mchorse.mappet.api.utils.manager.IManager;
 import mchorse.mappet.capabilities.character.Character;
 import mchorse.mappet.network.Dispatcher;
@@ -21,7 +22,7 @@ public class ServerHandlerContentData extends ServerMessageHandler<PacketContent
         boolean isEditing = !Character.get(player).getCurrentSession().isEditing(message.type, message.name);
         boolean exists = message.type.getManager().exists(message.name);
 
-        if (!OpHelper.isPlayerOp(player) || (isEditing && exists))
+        if (!Mappet.dashboardWhitelist.isWhitelisted(player) || (isEditing && exists))
         {
             return;
         }

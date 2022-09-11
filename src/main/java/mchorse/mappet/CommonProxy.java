@@ -161,6 +161,8 @@ public class CommonProxy
             {
                 throw new Exception("Something went wrong with JavaScript...");
             }
+
+            engine.close();
         }
         catch (Exception e)
         {

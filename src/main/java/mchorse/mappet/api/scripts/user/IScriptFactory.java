@@ -1,7 +1,9 @@
 package mchorse.mappet.api.scripts.user;
 
+import com.caoccao.javet.annotations.V8Function;
 import com.caoccao.javet.exceptions.JavetException;
 import com.caoccao.javet.values.reference.V8ValueFunction;
+import mchorse.mappet.api.scripts.GlobalObjectWrapper;
 import mchorse.mappet.api.scripts.user.blocks.IScriptBlockState;
 import mchorse.mappet.api.scripts.user.entities.IScriptPlayer;
 import mchorse.mappet.api.scripts.user.items.IScriptItemStack;
@@ -557,4 +559,27 @@ public interface IScriptFactory
      *               the object.
      */
     public String dump(Object object, boolean simple);
+
+    /**
+     * <pre>{@code
+     * let someScript = mappet.require("someScript") // scriptId
+     *
+     * function main(c) {
+     *   c.send(someScript.someVar); // sends 5
+     *   someScript.someVar = 499;
+     *   c.send(someScript.someFunc()); // sends 500
+     * }
+     * }</pre>
+     *
+     * someScript
+     * <pre>{@code
+     * // var, not let
+     * var someVar = 5;
+     * function someFunc() {
+     *   return someVar + 1;
+     * }
+     * }</pre>
+     * @param scriptId Unique script ID
+     */
+    public GlobalObjectWrapper require(String scriptId) throws JavetException;
 }

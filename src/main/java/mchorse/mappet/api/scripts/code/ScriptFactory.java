@@ -1,11 +1,15 @@
 package mchorse.mappet.api.scripts.code;
 
+import com.caoccao.javet.annotations.V8Function;
 import com.caoccao.javet.exceptions.JavetException;
 import com.caoccao.javet.values.V8Value;
 import com.caoccao.javet.values.reference.V8ValueArray;
 import com.caoccao.javet.values.reference.V8ValueFunction;
 import com.caoccao.javet.values.reference.V8ValueObject;
 import mchorse.mappet.Mappet;
+import mchorse.mappet.api.scripts.GlobalObjectWrapper;
+import mchorse.mappet.api.scripts.Script;
+import mchorse.mappet.api.scripts.ScriptManager;
 import mchorse.mappet.api.scripts.code.blocks.ScriptBlockState;
 import mchorse.mappet.api.scripts.code.items.ScriptItemStack;
 import mchorse.mappet.api.scripts.code.mappet.MappetUIBuilder;
@@ -334,6 +338,12 @@ public class ScriptFactory implements IScriptFactory
         output.append("}");
 
         return output.toString();
+    }
+
+    @Override
+    public GlobalObjectWrapper require(String scriptId) throws JavetException {
+        Script script = Mappet.scripts.getUnique(scriptId);
+        return new GlobalObjectWrapper(script.getEngine());
     }
 
     private String getModifier(int m)

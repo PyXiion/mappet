@@ -1,5 +1,7 @@
 package mchorse.mappet.api.scripts.user.entities;
 
+import com.caoccao.javet.exceptions.JavetException;
+import com.caoccao.javet.values.reference.V8ValueObject;
 import mchorse.mappet.entities.EntityNpc;
 
 /**
@@ -43,4 +45,69 @@ public interface IScriptNpc extends IScriptEntity
 
     public String getNpcState();
     public void setNpcState(String id);
+
+    /**
+     * Adds task to NPC
+     *
+     * Simple moving to point task
+     * <pre>{@code
+     *    var print;
+     *
+     * class GoToTask {
+     *     constructor(x, y, z, speed) {
+     *         this.x = x;
+     *         this.y = y;
+     *         this.z = z;
+     *         this.speed = speed;
+     *     }
+     *     shouldExecute() {
+     *         return true;
+     *     }
+     *     shouldContinueExecuting() {
+     *         return this.stopTimer > 0;
+     *     }
+     *     startExecuting() {
+     *         this.stopTimer = 120;
+     *         this.timer = 0;
+     *         print("Started")
+     *     }
+     *     resetTask() {
+     *         this.target.func_70661_as().func_75499_g(); // getNavigator().clearPath()
+     *     }
+     *     updateTask() {
+     *         // getLookHelper() setLookPosition(x, y, z) height getVerticalFaceSpeed
+     *         this.target.func_70671_ap().func_75650_a(this.x, this.y + this.target.field_70131_O, this.z, 10, this.target.func_70646_bf());
+     *
+     *         this.stopTimer -= 1;
+     *         if (this.timer > 0) {
+     *             this.timer -= 1;
+     *             return;
+     *         }
+     *         this.timer = 10;
+     *
+     *         let navigator = this.target.func_70661_as(); // getNavigator()
+     *         let path = navigator.func_75488_a(this.x, this.y, this.z); // getPathToXYZ(x, y, z)
+     *
+     *         navigator.func_75484_a(path, this.speed); // setPath(path, speed)
+     *     }
+     * }
+     *
+     * class A {
+     *     constructor(a) {
+     *         this.a = a;
+     *     }
+     * }
+     *
+     * function main(c) {
+     *     let npcs = c.getServer().getEntities("@e[mpid=someNpc]");
+     *
+     *     print = c.send;
+     *
+     *     for (let npc of npcs) {
+     *         npc.addTask(1, new GoToTask(0, 4, 9, 5));
+     *     }
+     * }
+     * }</pre>
+     */
+    public void addTask(int priority, V8ValueObject object) throws JavetException;
 }

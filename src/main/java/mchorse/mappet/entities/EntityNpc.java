@@ -11,11 +11,7 @@ import mchorse.mappet.api.states.States;
 import mchorse.mappet.api.utils.DataContext;
 import mchorse.mappet.capabilities.character.Character;
 import mchorse.mappet.capabilities.character.ICharacter;
-import mchorse.mappet.entities.ai.EntityAIAttackNpcMelee;
-import mchorse.mappet.entities.ai.EntityAIFollowTarget;
-import mchorse.mappet.entities.ai.EntityAIHurtByTargetNpc;
-import mchorse.mappet.entities.ai.EntityAIPatrol;
-import mchorse.mappet.entities.ai.EntityAIReturnToPost;
+import mchorse.mappet.entities.ai.*;
 import mchorse.mappet.entities.utils.MappetNpcRespawnManager;
 import mchorse.mappet.entities.utils.NpcDamageSource;
 import mchorse.mappet.network.Dispatcher;
@@ -47,6 +43,7 @@ import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -61,6 +58,8 @@ public class EntityNpc extends EntityCreature implements IEntityAdditionalSpawnD
     private boolean unkillableFailsafe = true;
     private Faction faction;
     private EntityAIHurtByTargetNpc targetAI;
+
+    private ArrayList<EntityAIBaseJS> jsTasks;
 
     public float smoothYawHead;
     public float prevSmoothYawHead;
@@ -160,6 +159,12 @@ public class EntityNpc extends EntityCreature implements IEntityAdditionalSpawnD
         {
             this.tasks.addTask(4, new EntityAIAttackNpcMelee(this, speed, false, this.state.damageDelay));
         }
+
+        if (jsTasks != null)
+            for (EntityAIBaseJS jsTask : jsTasks)
+            {
+                this.tasks.addTask(jsTask.priority, jsTask);
+            }
     }
 
     private boolean targetCheck(EntityLivingBase entity)
@@ -301,6 +306,14 @@ public class EntityNpc extends EntityCreature implements IEntityAdditionalSpawnD
     public AbstractMorph getMorph()
     {
         return this.morph.get();
+    }
+
+    public void addJSTask(int priority, EntityAIBaseJS task) {
+        if (jsTasks == null)
+            jsTasks = new ArrayList<>();
+        jsTasks.add(task);
+        task.priority = priority;
+        this.tasks.addTask(priority, task);
     }
 
     public EntityLivingBase getFollowTarget()

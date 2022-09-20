@@ -58,4 +58,9 @@ public class ScriptNpc extends ScriptEntity<EntityNpc> implements IScriptNpc
     public void addTask(int priority, V8ValueObject object) throws JavetException {
         this.entity.addJSTask(priority, new EntityAIBaseJS(entity, object));
     }
+
+    @Override
+    public void clearTasks() {
+        this.entity.clearJSTasks();
+    }
 }

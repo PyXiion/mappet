@@ -316,6 +316,13 @@ public class EntityNpc extends EntityCreature implements IEntityAdditionalSpawnD
         this.tasks.addTask(priority, task);
     }
 
+    public void clearJSTasks() {
+        if (jsTasks == null)
+            return;
+        jsTasks.clear();
+        initEntityAI();
+    }
+
     public EntityLivingBase getFollowTarget()
     {
         if (this.state.follow.isEmpty())
@@ -670,4 +677,5 @@ public class EntityNpc extends EntityCreature implements IEntityAdditionalSpawnD
 
         return distance < d0 * d0;
     }
+
 }

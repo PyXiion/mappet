@@ -26,6 +26,7 @@ import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -141,7 +142,7 @@ public class Script extends AbstractData
 
         tag.setBoolean("Unique", this.unique);
         tag.setTag("Libraries", libraries);
-        tag.setByteArray("Code", this.code.getBytes());
+        tag.setByteArray("Code", this.code.getBytes(StandardCharsets.UTF_8));
 
         return tag;
     }
@@ -163,6 +164,6 @@ public class Script extends AbstractData
             }
         }
 
-        this.code = new String(tag.getByteArray("Code"));
+        this.code = new String(tag.getByteArray("Code"), StandardCharsets.UTF_8);
     }
 }
